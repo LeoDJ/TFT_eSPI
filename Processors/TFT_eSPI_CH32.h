@@ -1,15 +1,12 @@
         ////////////////////////////////////////////////////
-        //       TFT_eSPI generic driver functions        //
+        //       TFT_eSPI CH32 driver functions           //
         ////////////////////////////////////////////////////
 
-// This is a generic driver for Arduino boards, it supports SPI interface displays
-// 8-bit parallel interface to TFT is not supported for generic processors
-
-#ifndef _TFT_eSPI_GENERICH_
-#define _TFT_eSPI_GENERICH_
+#ifndef _TFT_eSPI_CH32H_
+#define _TFT_eSPI_CH32H_
 
 // Processor ID reported by getSetup()
-#define PROCESSOR_ID 0x0000
+#define PROCESSOR_ID 0xC32
 
 // Include processor specific header
 // None
@@ -19,7 +16,7 @@
 #define SET_BUS_READ_MODE  // Not used
 
 // Code to check if DMA is busy, used by SPI bus transaction startWrite and endWrite functions
-#define DMA_BUSY_CHECK // Not used so leave blank
+#define DMA_BUSY_CHECK dmaWait()
 
 // To be safe, SUPPORT_TRANSACTIONS is assumed mandatory
 #if !defined (SUPPORT_TRANSACTIONS)

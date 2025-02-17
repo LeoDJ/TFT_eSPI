@@ -93,7 +93,10 @@
 #endif
 
 // Include the processor specific drivers
-#if defined(CONFIG_IDF_TARGET_ESP32S3)
+#if defined(PROCESSOR_CUSTOM)
+  // you should be able define your own processor quirks in any c file outside the library
+  // (for advanced users) Look at Processors/TFT_eSPI_Generic.h for inspiration
+#elif defined(CONFIG_IDF_TARGET_ESP32S3)
   #include "Processors/TFT_eSPI_ESP32_S3.h"
 #elif defined(CONFIG_IDF_TARGET_ESP32C3)
   #include "Processors/TFT_eSPI_ESP32_C3.h"
@@ -105,6 +108,8 @@
   #include "Processors/TFT_eSPI_STM32.h"
 #elif defined(ARDUINO_ARCH_RP2040)
   #include "Processors/TFT_eSPI_RP2040.h"
+#elif defined(ARDUINO_ARCH_CH32V)
+  #include "Processors/TFT_eSPI_CH32.h"
 #else
   #include "Processors/TFT_eSPI_Generic.h"
   #define GENERIC_PROCESSOR

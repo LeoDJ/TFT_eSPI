@@ -15,7 +15,10 @@
 
 #include "TFT_eSPI.h"
 
-#if defined (ESP32)
+#if defined(PROCESSOR_CUSTOM)
+  // you should be able define your own processor quirks in any c file outside the library
+  // (for advanced users) Look at Processors/TFT_eSPI_Generic.c for inspiration
+#elif defined (ESP32)
   #if defined(CONFIG_IDF_TARGET_ESP32S3)
     #include "Processors/TFT_eSPI_ESP32_S3.c" // Tested with SPI and 8-bit parallel
   #elif defined(CONFIG_IDF_TARGET_ESP32C3)
@@ -29,6 +32,8 @@
   #include "Processors/TFT_eSPI_STM32.c"
 #elif defined (ARDUINO_ARCH_RP2040)  || defined (ARDUINO_ARCH_MBED) // Raspberry Pi Pico
   #include "Processors/TFT_eSPI_RP2040.c"
+#elif defined(ARDUINO_ARCH_CH32V)
+  #include "Processors/TFT_eSPI_CH32.c"
 #else
   #include "Processors/TFT_eSPI_Generic.c"
 #endif
