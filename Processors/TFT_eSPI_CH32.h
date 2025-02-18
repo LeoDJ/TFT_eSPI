@@ -12,7 +12,7 @@
 // None
 
 // Processor specific code used by SPI bus transaction startWrite and endWrite functions
-#define SET_BUS_WRITE_MODE // Not used
+#define SET_BUS_WRITE_MODE if (TFT_RST >= 0) pinMode(TFT_RST, OUTPUT) // Hack to not require pullup when RST == MISO
 #define SET_BUS_READ_MODE  // Not used
 
 // Code to check if DMA is busy, used by SPI bus transaction startWrite and endWrite functions
